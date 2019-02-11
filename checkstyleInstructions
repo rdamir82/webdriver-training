@@ -1,0 +1,6 @@
+Install checkstyle plugin:
+https://marketplace.eclipse.org/content/checkstyle-plug
+Set default style to Google style screenshot https://www.screencast.com/t/sU5U9JxaS
+Turn on  print margin: General -> Editors -> Text Editors -> Show Print Margin
+Set up import order: https://www.screencast.com/t/zehl05Pm
+Switch Eclipse to use spaces: https://www.screencast.com/t/A2Up4wxId
