@@ -28,9 +28,7 @@ public class BrokenImages extends TestBase {
 		
 		assertTrue(!getDriver().findElement(By.cssSelector(img3selector)).getAttribute("naturalWidth").equals("0"));
 		
-		
-		
-		
+
 		
 		
 	}
