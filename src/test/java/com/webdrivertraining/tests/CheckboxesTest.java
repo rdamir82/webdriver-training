@@ -1,12 +1,12 @@
 package com.webdrivertraining.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static org.junit.Assert.assertEquals;
 
 import com.webdrivertraining.testbase.TestBase;
 

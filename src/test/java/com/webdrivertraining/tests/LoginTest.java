@@ -15,10 +15,10 @@ public class LoginTest extends TestBase{
 	public void CorrectLoginCheck() {
 		String resoult;
 			
-		driver.get("http://the-internet.herokuapp.com/login");
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(passwd);
-		driver.findElement(By.className("radius")).click();
+		getDriver().get("http://the-internet.herokuapp.com/login");
+		getDriver().findElement(By.id("username")).sendKeys(username);
+		getDriver().findElement(By.id("password")).sendKeys(passwd);
+		getDriver().findElement(By.className("radius")).click();
 		
 		resoult = getDriver().findElement(By.id("flash")).getAttribute("class").toString();
 		Assertions.assertEquals("flash success", resoult);
@@ -28,10 +28,10 @@ public class LoginTest extends TestBase{
 	public void InvalidLoginCheck() {
 		String resoult;
 		
-		driver.get("http://the-internet.herokuapp.com/login");
-		driver.findElement(By.id("username")).sendKeys(username2);
-		driver.findElement(By.id("password")).sendKeys(passwd2);
-		driver.findElement(By.className("radius")).click();
+		getDriver().get("http://the-internet.herokuapp.com/login");
+		getDriver().findElement(By.id("username")).sendKeys(username2);
+		getDriver().findElement(By.id("password")).sendKeys(passwd2);
+		getDriver().findElement(By.className("radius")).click();
 		
 		resoult = getDriver().findElement(By.id("flash")).getAttribute("class").toString();
 		Assertions.assertEquals("flash error", resoult);
