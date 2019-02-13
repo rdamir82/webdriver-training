@@ -22,7 +22,7 @@ public class DynamicControlTest extends TestBase{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector( "#message")));	
 		result = getDriver().findElement(By.cssSelector("#message")).getText();
 		assertEquals("It's gone!",result);
-		
+
 	
 		
 
