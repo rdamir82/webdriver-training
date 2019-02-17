@@ -10,78 +10,60 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.webdrivertraining.testbase.TestBase;
 
-public class Hovers extends TestBase{
-	
+public class Hovers extends TestBase {
+
 	String baseUrl = "http://the-internet.herokuapp.com/hovers";
-	
-	// 
-	
+
+	By imgToHoverOn = By.cssSelector("#content > div > div:nth-child(3) > img");
+	By textAppearOnHover = By.cssSelector("#content > div > div:nth-child(3) > div > h5");
+	String exceptedRes = "name: user1";
+
+	By imgToHoverOn2 = By.cssSelector("#content > div > div:nth-child(4) > img");
+	By textAppearOnHover2 = By.cssSelector("#content > div > div:nth-child(4) > div > h5");
+	String exceptedRes2 = "name: user2";
+
+	By imgToHoverOn3 = By.cssSelector("#content > div > div:nth-child(5) > img");
+	By textAppearOnHover3 = By.cssSelector("#content > div > div:nth-child(5) > div > h5");
+	String exceptedRes3 = "name: user3";
+	//
+
 	@Test
-	public void getTextFromHoweredElement() {
-		
-		getDriver().get(baseUrl);
-		
-		WebElement img = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(3) > img"));
-		WebElement nameUser = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(3) > div > h5"));
-		String exceptedRes = "name: user1";
-		String res = "";
-		
-		// res = nameUser1.getText();
-		
-		Actions builder = new Actions(getDriver());
-		
-		Action mouseOverImg = builder.moveToElement(img).build();
-		
-		mouseOverImg.perform();
-		
-		res = nameUser.getText();
-		
-		assertTrue(exceptedRes.contentEquals(res));
-		
-	}
-	
-	@Test
-	public void getTextFromHoweredElement2() {
-		
-		getDriver().get(baseUrl);
-		
-		WebElement img = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(4) > img"));
-		WebElement nameUser = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(4) > div > h5"));
-		String exceptedRes = "name: user2";
-		String res = "";
-		
-		Actions builder = new Actions(getDriver());
-		
-		Action mouseOverImg = builder.moveToElement(img).build();
-		
-		mouseOverImg.perform();
-		
-		res = nameUser.getText();
-		
-		assertTrue(exceptedRes.contentEquals(res));
-		
-	}
-	
-	@Test
-	public void getTextFromHoweredElement3() {
-		
-		getDriver().get(baseUrl);
-		
-		WebElement img = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(5) > img"));
-		WebElement nameUser = getDriver().findElement(By.cssSelector("#content > div > div:nth-child(5) > div > h5"));
-		String exceptedRes = "name: user3";
-		String res = "";
-		
-		Actions builder = new Actions(getDriver());
-		
-		Action mouseOverImg = builder.moveToElement(img).build();
-		
-		mouseOverImg.perform();
-		
-		res = nameUser.getText();
-		
-		assertTrue(exceptedRes.contentEquals(res));
-		
+	public void checkTextAfterHover() {
+		assertTrue(checkTextOnHoweredElement(baseUrl, imgToHoverOn, textAppearOnHover, exceptedRes));
 	}
 
+	@Test
+	public void checkTextAfterHover2() {
+		assertTrue(checkTextOnHoweredElement(baseUrl, imgToHoverOn2, textAppearOnHover2, exceptedRes2));
+	}
+
+	@Test
+	public void checkTextAfterHover3() {
+		assertTrue(checkTextOnHoweredElement(baseUrl, imgToHoverOn3, textAppearOnHover3, exceptedRes3));
+	}
+
+	private boolean checkTextOnHoweredElement(String baseUrl, By elementLocator, By textInElementAfterHoverLocator,
+			String exceptedText) {
+
+		getDriver().get(baseUrl);
+
+		WebElement img = getDriver().findElement(elementLocator);
+		WebElement nameUser = getDriver().findElement(textInElementAfterHoverLocator);
+
+		Actions builder = new Actions(getDriver());
+
+		Action mouseOverImg = builder.moveToElement(img).build();
+
+		String result = "";
+
+		mouseOverImg.perform();
+
+		result = nameUser.getText();
+
+		if (exceptedText.contentEquals(result)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

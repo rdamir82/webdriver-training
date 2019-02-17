@@ -10,42 +10,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.webdrivertraining.testbase.TestBase;
 
 public class DinamicallyLoadedPageElements extends TestBase {
-	
-	String baseUrl = "http://the-internet.herokuapp.com/dynamic_loading/1";
-	String baseUrl2 = "http://the-internet.herokuapp.com/dynamic_loading/2";
 
-	
+	private final String baseUrl = "http://the-internet.herokuapp.com/dynamic_loading/1";
+	private final String baseUrl2 = "http://the-internet.herokuapp.com/dynamic_loading/2";
+	private final By elementLocator = By.cssSelector("#start > button");
+	private final By apearedElementLocator = By.cssSelector("#finish > h4");
+
 	@Test
-	public void checkhForAppear() {
-		
-		WebDriverWait wait = new WebDriverWait(getDriver(),5);
-			
-		getDriver().get(baseUrl);	
-		getDriver().findElement(By.cssSelector("#start > button")).click();	
-		// wait for this 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector( "#finish > h4")));	
-		// text of field:
-		String res = getDriver().findElement(By.cssSelector("#finish > h4")).getText();
-			
-		assertTrue(res.equals("Hello World!"));
-			
+	public void checkhForAppear1() {
+		assertTrue((checkForAppearMethod(baseUrl, elementLocator, apearedElementLocator)), "Element is not appeared");
 	}
-	
+
 	@Test
 	public void checkhForAppear2() {
-		
-		WebDriverWait wait = new WebDriverWait(getDriver(),5);
-			
-		getDriver().get(baseUrl2);	
-		getDriver().findElement(By.cssSelector("#start > button")).click();	
-		// wait for this 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector( "#finish > h4")));
-		// text of field:
-		String res = getDriver().findElement(By.cssSelector("#finish > h4")).getText();
-			
-		assertTrue(res.equals("Hello World!"));
-			
+		assertTrue((checkForAppearMethod(baseUrl2, elementLocator, apearedElementLocator)), "Element is not appeared");
 	}
-	
 
+	private boolean checkForAppearMethod(String baseUrl, By elementLocator, By apearedElementLocator) {
+
+		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+		getDriver().get(baseUrl);
+		getDriver().findElement(elementLocator).click();
+		// wait for this
+		wait.until(ExpectedConditions.visibilityOfElementLocated(apearedElementLocator));
+		// text of field:
+		String res = getDriver().findElement(apearedElementLocator).getText();
+		// test
+		if (res.equals("Hello World!")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
