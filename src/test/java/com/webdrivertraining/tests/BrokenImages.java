@@ -14,10 +14,13 @@ import com.webdrivertraining.testbase.TestBase;
 public class BrokenImages extends TestBase {
 	
 	final String baseUrl = "http://the-internet.herokuapp.com/broken_images";
-	String res = "";
-	boolean forTest = true;	
+
+	
 	@Test
 	 public void brokenImages() {
+		
+		String result;
+		boolean forTest = true;	
 		
 		getDriver().get(baseUrl);
 		
@@ -26,9 +29,9 @@ public class BrokenImages extends TestBase {
 		// if find broken img inform the location of that img and set false for testCase
 		for (WebElement element : imgsForTest) {
 			
-			res = element.getAttribute("naturalWidth");
+			result = element.getAttribute("naturalWidth");
 			
-			if (res.equals("0")) {
+			if (result.equals("0")) {
 				System.out.println("IMG BROKEN ! @ location: " + element.getLocation());
 				forTest = false;
 			}					

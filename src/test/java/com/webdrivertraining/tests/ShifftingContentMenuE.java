@@ -19,7 +19,7 @@ public class ShifftingContentMenuE extends TestBase {
 		
 		getDriver().get(baseUrl);
 		
-		WebElement portfolio = getDriver().findElement(By.cssSelector(" #content > div > ul > li:nth-child(4) > a"));
+		//WebElement portfolio = getDriver().findElement(By.cssSelector(" #content > div > ul > li:nth-child(4) > a"));
 		
 		WebElement gallery = getDriver().findElement(By.cssSelector(".shift"));
 		
